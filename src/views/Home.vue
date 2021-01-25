@@ -14,19 +14,19 @@ export default {
   data() {
     return {
       allKomic: null,
-      page: 1,
+      page: 1
     };
   },
 
   components: {
-    CardKomic,
+    CardKomic
   },
 
   mounted() {
     this.getAllKomic(this.page);
   },
   methods: {
-    getAllKomic: async function (data) {
+    getAllKomic: async function(data) {
       const url = `https://mangamint.kaedenoki.net/api/manga/page/${data}`;
 
       try {
@@ -39,7 +39,7 @@ export default {
           return error.response;
         }
       }
-    },
-  },
+    }
+  }
 };
 </script>

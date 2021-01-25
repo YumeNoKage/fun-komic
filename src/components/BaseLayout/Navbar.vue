@@ -4,13 +4,22 @@
       <div
         class="container mx-auto py-4 px-4 sm:px-4 md:px-8 md:flex md:items-center md:justify-between"
       >
-        <router-link to="/" class="">
-          <h2
-            class="text-3xl leading-9 font-extrabold mb-4 lg:mb-0 tracking-tight text-gray-900 sm:text-4xl sm:leading-10"
+        <div class="flex">
+          <router-link to="/" class="">
+            <h2
+              class="text-3xl leading-9 font-extrabold mb-4 lg:mb-0 tracking-tight text-gray-900 sm:text-4xl sm:leading-10"
+            >
+              <span class="text-blue-500">Fun Komic</span>
+            </h2>
+          </router-link>
+          <div
+            id="hamburger"
+            class="md:hidden lg:hidden text-xl mt-1 ml-auto"
+            @click="hamburger()"
           >
-            <span class="text-blue-500">Fun Komic</span>
-          </h2>
-        </router-link>
+            Menu
+          </div>
+        </div>
         <div class="search w-80 mx-auto">
           <div class="shadow flex rounded">
             <input
@@ -29,7 +38,7 @@
             </button>
           </div>
         </div>
-        <div class="lg:mt-0 sm:block">
+        <div class="lg:mt-0 sm:block navbarMobile" id="mobileMenu">
           <div
             class="md:inline-flex md:ml-3 sm:inline-block hover:bg-blue-100 duration-300 rounded"
           >
@@ -75,8 +84,28 @@
     </div>
   </nav>
 </template>
+
 <script>
 export default {
   name: "Navbar",
+
+  methods: {
+    hamburger() {
+      const mobileMenu = document.getElementById("mobileMenu");
+      mobileMenu.classList.toggle("active");
+    },
+  },
 };
 </script>
+
+<style lang="scss">
+/* src="@/assets/scss/components/BaseLayout/Navbar.scss" */
+.navbarMobile {
+  @media screen and(max-width: 425px) {
+    transform: translateY(-100px);
+  }
+}
+.active {
+  transform: translateY(0);
+}
+</style>

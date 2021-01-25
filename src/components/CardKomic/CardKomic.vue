@@ -1,5 +1,7 @@
 <template>
-  <div class="grid gap-4 lg:grid-cols-4 sm:grid-cols-1 w-3/4 m-auto">
+  <div
+    class="grid gap-4 lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 w-3/4 m-auto"
+  >
     <div
       v-for="(komic, i) in dataKomic.manga_list"
       :key="i"
@@ -26,14 +28,14 @@ export default {
   name: "CardKomic",
   props: {
     dataKomic: {
-      type: Object,
-    },
+      type: Object
+    }
   },
 
   methods: {
     data() {
       console.log(this.dataKomic);
-    },
-  },
+    }
+  }
 };
 </script>
