@@ -1,6 +1,6 @@
-.navbarMobile {
-  transform: translateY(100px);
+nav{
+  z-index: 1000;
 }
-.active {
-  display: block;
+.logo-brand {
+  width: 180px !important;
 }

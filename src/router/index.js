@@ -7,26 +7,50 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "Home",
+    name: "home",
     component: Home
   },
   {
+    path: "/genre",
+    name: "genre",
+    component: () =>
+      import("../components/Genre/Genre.vue")
+  },
+  {
     path: "/manga",
-    name: "Manga",
+    name: "manga",
     component: () =>
       import("../views/Manga.vue")
   },
   {
+    path: "/manga/:slug",
+    name: "detail-manga",
+    component: () =>
+      import("../components/DetailKomic/DetailKomic.vue")
+  },
+  {
     path: "/manhua",
-    name: "Manhua",
+    name: "manhua",
     component: () =>
       import("../views/Manhua.vue")
   },
   {
+    path: "/manhua/:slug",
+    name: "detail-manhua",
+    component: () =>
+      import("../components/DetailKomic/DetailKomic.vue")
+  },
+  {
     path: "/manhwa",
-    name: "Manhwa",
+    name: "manhwa",
     component: () =>
       import("../views/Manhwa.vue")
+  },
+  {
+    path: "/manhwa/:slug",
+    name: "detail-manhwa",
+    component: () =>
+      import("../components/DetailKomic/DetailKomic.vue")
   }
 ];
 
