@@ -51,6 +51,12 @@ const routes = [
     name: "detail-manhwa",
     component: () =>
       import("../components/DetailKomic/DetailKomic.vue")
+  },
+  {
+    path: "/:baca/:manga/:chapter",
+    name: "baca-komic",
+    component: () =>
+      import("../components/BacaKomic/BacaKomic.vue")
   }
 ];
 

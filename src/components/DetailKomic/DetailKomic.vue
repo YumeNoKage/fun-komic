@@ -30,7 +30,8 @@
       <div class="w-2/3 p-3">
         <h3 class="text-xl font-semibold text-gray-800">list chapter</h3>
         <div class="item-chapter overflow-auto px-3 mt-3">
-          <div
+          <router-link
+            :to="`${chapter.chapter_endpoint}`"
             v-for="(chapter, i) in detailKomic.chapter"
             :key="i"
             class="bg-white my-2 w-full flex items-center p-2 rounded-xl shadow"
@@ -45,7 +46,7 @@
                 class="block h-4 w-4 bg-blue-400 rounded-full bottom-0 right-0"
               ></span>
             </div>
-          </div>
+          </router-link>
         </div>
       </div>
     </div>

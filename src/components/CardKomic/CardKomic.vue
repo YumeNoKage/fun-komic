@@ -8,7 +8,7 @@
       :href="`${changeFont(komic.type)}/${komic.endpoint}`"
       class="m-4"
     >
-      <div class="bg-white shadow rounded h-auto relative">
+      <!-- <div class="bg-white shadow rounded h-auto relative">
         <div>
           <div
             :style="`background-image: url('${komic.thumb}')`"
@@ -45,6 +45,44 @@
           class="bg-yellow-200 text-yellow-800 badge-komic absolute top-0 left-0 px-2 rounded rounded-r-none rounded-b-none"
         >
           {{ komic.type }}
+        </div>
+      </div> -->
+      <div class="h-full relative">
+        <div class="max-w-sm rounded overflow-hidden shadow-lg h-full">
+          <img class="w-full" :src="`${komic.thumb}`" :alt="komic.title" />
+          <div class="px-6 py-4 h-auto">
+            <p
+              class="text-lg text-bold tracking-wide text-gray-700 font-semibold mb-2"
+            >
+              {{ komic.title }}
+            </p>
+            <div class="flex">
+              <p class="text-sm text-gray-600 font-hairline">
+                {{ komic.chapter }}
+              </p>
+              <small class="ml-auto text-gray-600">{{
+                komic.updated_on
+              }}</small>
+            </div>
+          </div>
+          <div
+            v-if="komic.type === 'Manga'"
+            class="bg-gray-200 text-gray-700 badge-komic absolute top-0 left-0 px-2 rounded rounded-r-none rounded-b-none"
+          >
+            {{ komic.type }}
+          </div>
+          <div
+            v-if="komic.type === 'Manhua'"
+            class="bg-red-200 text-red-700 badge-komic absolute top-0 left-0 px-2 rounded rounded-r-none rounded-b-none"
+          >
+            {{ komic.type }}
+          </div>
+          <div
+            v-if="komic.type === 'Manhwa'"
+            class="bg-yellow-200 text-yellow-800 badge-komic absolute top-0 left-0 px-2 rounded rounded-r-none rounded-b-none"
+          >
+            {{ komic.type }}
+          </div>
         </div>
       </div>
     </a>
