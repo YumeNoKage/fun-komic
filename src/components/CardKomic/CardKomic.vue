@@ -50,13 +50,15 @@
       <div class="h-full relative">
         <div class="max-w-sm rounded overflow-hidden shadow-lg h-full">
           <img class="w-full" :src="`${komic.thumb}`" :alt="komic.title" />
-          <div class="px-6 py-4 h-auto">
+          <div class="px-3 py-2 pb-5">
             <p
-              class="text-lg text-bold tracking-wide text-gray-700 font-semibold mb-2"
+              class="overflow-ellipsis overflow-hidden h-14 text-lg text-bold tracking-wide text-gray-700 font-semibold mb-2"
             >
               {{ komic.title }}
             </p>
-            <div class="flex">
+          </div>
+          <div>
+            <div class="flex px-3 pb-2 ">
               <p class="text-sm text-gray-600 font-hairline">
                 {{ komic.chapter }}
               </p>

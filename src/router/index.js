@@ -53,7 +53,7 @@ const routes = [
       import("../components/DetailKomic/DetailKomic.vue")
   },
   {
-    path: "/:baca/:manga/:chapter",
+    path: "/:baca/:komic/:chapter",
     name: "baca-komic",
     component: () =>
       import("../components/BacaKomic/BacaKomic.vue")

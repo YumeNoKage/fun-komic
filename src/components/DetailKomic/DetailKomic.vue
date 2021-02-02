@@ -50,6 +50,7 @@
         </div>
       </div>
     </div>
+    <div class="w-full h-full justify-center" v-else>tunggu bentar</div>
   </div>
 </template>
 <script>
