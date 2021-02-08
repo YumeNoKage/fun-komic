@@ -4,10 +4,10 @@
       class="grid gap-4 lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 w-3/4 m-auto"
       v-if="dataKomic != null"
     >
-      <a
+      <router-link
         v-for="(komic, i) in dataKomic.manga_list"
         :key="i"
-        :href="`${changeFont(komic.type)}/${komic.endpoint}`"
+        :to="`detail/${komic.endpoint}`"
         class="m-4"
       >
         <div class="h-full relative">
@@ -52,7 +52,7 @@
             </div>
           </div>
         </div>
-      </a>
+      </router-link>
     </div>
     <div
       class="grid gap-4 lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 w-3/4 m-auto"
@@ -60,7 +60,7 @@
     >
       <div class="w-full p-4" v-for="data in 3" :key="data">
         <div
-          class="flex h-full flex-col relative bg-white w-full bg-white overflow-hidden card translate-3d-none-after rounded shadow-sm"
+          class="flex h-full flex-col relative bg-white w-full overflow-hidden card translate-3d-none-after rounded shadow-sm"
         >
           <div class="group text-primary-500">
             <div class="h-32 w-full">
@@ -122,5 +122,5 @@ export default {
   },
 };
 </script>
-<style lang="scss" src="@/assets/scss/components/BaseLayout/Cardkomic/CardKomic.scss">
+<style lang="scss" src="@/assets/scss/components/Cardkomic/CardKomic.scss">
 </style>

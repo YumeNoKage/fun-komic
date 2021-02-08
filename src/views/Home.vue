@@ -1,26 +1,36 @@
 <template>
-  <div class="home container m-auto">
-    <CardKomic :dataKomic="allKomic" />
-    <div class="flex w-full justify-center my-3" v-if="allKomic != null">
-      <div
-        @click="previousPage()"
-        v-if="page > 1"
-        class="px-3 py-1 mr-1 flex justify-center hover:bg-blue-300 transition-all duration-300 items-center rounded-full bg-gray-200 cursor-pointer"
+  <div class="home">
+    <div class="py-16 bg-gray-600">
+      <SliderHome :listSlider="rekomendedKomic" class="w-10/12 rounded-md" />
+    </div>
+    <div class="container m-auto mt-12 relative">
+      <h2
+        class="w-10/12 ml-auto text-8xl absolute left-36 top-8 font-extrabold text-gray-400"
       >
-        <span class="px-2" aria-hidden="true">&laquo;</span>
-        Previous
-      </div>
-      <div
-        class="px-3 mx-2 py-1 flex justify-center bg-blue-300 transition-all duration-300 items-center rounded-full cursor-pointer"
-      >
-        {{ page }}
-      </div>
-      <div
-        @click="nextPage()"
-        class="px-3 py-1 ml-1 flex justify-center hover:bg-blue-300 transition-all duration-300 items-center rounded-full bg-gray-200 cursor-pointer"
-      >
-        Next
-        <span class="px-2" aria-hidden="true">&raquo;</span>
+        Semua Komic
+      </h2>
+      <CardKomic :dataKomic="allKomic" class="pt-20" />
+      <div class="flex w-full justify-center my-3" v-if="allKomic != null">
+        <div
+          @click="previousPage()"
+          v-if="page > 1"
+          class="px-3 py-1 mr-1 flex justify-center hover:bg-blue-300 transition-all duration-300 items-center rounded-full bg-gray-200 cursor-pointer"
+        >
+          <span class="px-2" aria-hidden="true">&laquo;</span>
+          Previous
+        </div>
+        <div
+          class="px-3 mx-2 py-1 flex justify-center bg-blue-300 transition-all duration-300 items-center rounded-full cursor-pointer"
+        >
+          {{ page }}
+        </div>
+        <div
+          @click="nextPage()"
+          class="px-3 py-1 ml-1 flex justify-center hover:bg-blue-300 transition-all duration-300 items-center rounded-full bg-gray-200 cursor-pointer"
+        >
+          Next
+          <span class="px-2" aria-hidden="true">&raquo;</span>
+        </div>
       </div>
     </div>
   </div>
@@ -29,6 +39,7 @@
 <script>
 import axios from "axios";
 import CardKomic from "@/components/CardKomic/CardKomic";
+import SliderHome from "@/components/HeaderHomePage/SliderHome";
 
 export default {
   name: "Home",
@@ -36,16 +47,19 @@ export default {
   data() {
     return {
       allKomic: null,
+      rekomendedKomic: null,
       page: 1,
     };
   },
 
   components: {
     CardKomic,
+    SliderHome,
   },
 
   mounted() {
     this.getAllKomic(this.page);
+    this.getRekomended();
   },
 
   methods: {
@@ -60,6 +74,21 @@ export default {
         this.allKomic = response.data;
 
         // console.log(this.allKomic);
+      } catch (error) {
+        if (error.response) {
+          return error.response;
+        }
+      }
+    },
+
+    getRekomended: async function () {
+      const url = `https://mangamint.kaedenoki.net/api/recommended`;
+
+      try {
+        const response = await axios.get(url);
+
+        this.rekomendedKomic = response.data;
+        console.log(this.rekomendedKomic);
       } catch (error) {
         if (error.response) {
           return error.response;

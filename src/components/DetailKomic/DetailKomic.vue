@@ -79,7 +79,8 @@ export default {
         if (response.data.title !== "") {
           this.detailKomic = response.data;
         } else {
-          location.reload();
+          const response = await axios.get(url);
+          this.detailKomic = response.data;
         }
 
         console.log(this.detailKomic);

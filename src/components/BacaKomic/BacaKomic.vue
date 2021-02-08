@@ -1,8 +1,10 @@
 <template>
   <div class="bg-gray-700">
     <div class="container m-auto" v-if="listKomic !== null">
-      <div v-for="chapter in listKomic.chapter_image"
-          :key="chapter.image_number">
+      <div
+        v-for="chapter in listKomic.chapter_image"
+        :key="chapter.image_number"
+      >
         <img
           class="block m-auto"
           :src="chapter.chapter_image_link"
@@ -38,7 +40,8 @@ export default {
         if (response.data.chapter_image) {
           this.listKomic = response.data;
         } else {
-          location.reload();
+          const response = await axios.get(url);
+          this.listKomic = response.data;
         }
 
         console.log(this.listKomic);

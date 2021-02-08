@@ -23,22 +23,10 @@ const routes = [
       import("../views/Manga.vue")
   },
   {
-    path: "/manga/:slug",
-    name: "detail-manga",
-    component: () =>
-      import("../components/DetailKomic/DetailKomic.vue")
-  },
-  {
     path: "/manhua",
     name: "manhua",
     component: () =>
       import("../views/Manhua.vue")
-  },
-  {
-    path: "/manhua/:slug",
-    name: "detail-manhua",
-    component: () =>
-      import("../components/DetailKomic/DetailKomic.vue")
   },
   {
     path: "/manhwa",
@@ -47,8 +35,8 @@ const routes = [
       import("../views/Manhwa.vue")
   },
   {
-    path: "/manhwa/:slug",
-    name: "detail-manhwa",
+    path: "/detail/:slug",
+    name: "detail-manga",
     component: () =>
       import("../components/DetailKomic/DetailKomic.vue")
   },
