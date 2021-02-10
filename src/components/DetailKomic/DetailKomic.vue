@@ -1,7 +1,7 @@
 <template>
   <div class="container px-8 py-4 mx-auto">
-    <div class="flex" v-if="detailKomic !== null">
-      <div class="w-auto p-3">
+    <div class="md:flex sm:block" v-if="detailKomic !== null">
+      <div class="w-auto p-3 sm:mb-10">
         <div class="max-w-sm rounded overflow-hidden shadow-md">
           <div
             class="w-full h-64 bg-cover"
@@ -27,9 +27,9 @@
           </div>
         </div>
       </div>
-      <div class="w-2/3 p-3">
+      <div class="md:w-2/3 sm:w-full p-3">
         <h3 class="text-xl font-semibold text-gray-800">list chapter</h3>
-        <div class="item-chapter overflow-auto px-3 mt-3">
+        <div class="item-chapter overscroll-none overflow-auto px-3 mt-3">
           <router-link
             :to="`${chapter.chapter_endpoint}`"
             v-for="(chapter, i) in detailKomic.chapter"
@@ -78,12 +78,18 @@ export default {
 
         if (response.data.title !== "") {
           this.detailKomic = response.data;
+          localStorage.setItem(
+            "listChapter",
+            JSON.stringify(this.detailKomic.chapter)
+          );
         } else {
           const response = await axios.get(url);
           this.detailKomic = response.data;
+          localStorage.setItem(
+            "listChapter",
+            JSON.stringify(this.detailKomic.chapter)
+          );
         }
-
-        console.log(this.detailKomic);
       } catch (error) {
         if (error.response) {
           return error.response;
@@ -97,5 +103,15 @@ export default {
 <style lang="scss">
 .item-chapter {
   height: 75vh !important;
+}
+
+::-webkit-scrollbar {
+  border-radius: 5px;
+  width: 3px;
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #bbbbbb;
+  border-radius: 5px !important;
 }
 </style>

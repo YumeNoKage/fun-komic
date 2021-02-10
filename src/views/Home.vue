@@ -1,15 +1,56 @@
 <template>
   <div class="home">
-    <div class="py-16 bg-gray-600">
-      <SliderHome :listSlider="rekomendedKomic" class="w-10/12 rounded-md" />
+    <div class="py-16 bg-gray-400">
+      <SliderHome
+        :listSlider="rekomendedKomic"
+        class="md:w-10/12 sm:w-full rounded-md"
+      />
     </div>
-    <div class="container m-auto mt-12 relative">
+    <div class="container m-auto mt-12">
       <h2
-        class="w-10/12 ml-auto text-8xl absolute left-36 top-8 font-extrabold text-gray-400"
+        class="md:w-10/12 md:ml-auto text-6xl sm:m-auto font-extrabold text-gray-400"
+      >
+        Popular Komic
+      </h2>
+      <CardKomic
+        :dataKomic="popularKomic"
+        :display="true"
+        class="md:pt-20 sm:pt-10 z-30"
+      />
+      <!-- <div class="flex w-full justify-center my-3" v-if="popularKomic != null">
+        <div
+          @click="previousPage()"
+          v-if="page > 1"
+          class="px-3 py-1 mr-1 flex justify-center hover:bg-blue-300 transition-all duration-300 items-center rounded-full bg-gray-200 cursor-pointer"
+        >
+          <span class="px-2" aria-hidden="true">&laquo;</span>
+          Previous
+        </div>
+        <div
+          class="px-3 mx-2 py-1 flex justify-center bg-blue-300 transition-all duration-300 items-center rounded-full cursor-pointer"
+        >
+          {{ page }}
+        </div>
+        <div
+          @click="nextPage()"
+          class="px-3 py-1 ml-1 flex justify-center hover:bg-blue-300 transition-all duration-300 items-center rounded-full bg-gray-200 cursor-pointer"
+        >
+          Next
+          <span class="px-2" aria-hidden="true">&raquo;</span>
+        </div>
+      </div> -->
+    </div>
+    <div class="container m-auto mt-12">
+      <h2
+        class="md:w-10/12 md:ml-auto text-6xl sm:m-auto font-extrabold text-gray-400"
       >
         Semua Komic
       </h2>
-      <CardKomic :dataKomic="allKomic" class="pt-20" />
+      <CardKomic
+        :dataKomic="allKomic"
+        :display="false"
+        class="md:pt-20 sm:pt-10 z-30"
+      />
       <div class="flex w-full justify-center my-3" v-if="allKomic != null">
         <div
           @click="previousPage()"
@@ -48,7 +89,9 @@ export default {
     return {
       allKomic: null,
       rekomendedKomic: null,
+      popularKomic: null,
       page: 1,
+      pagePopular: 1,
     };
   },
 
@@ -60,9 +103,29 @@ export default {
   mounted() {
     this.getAllKomic(this.page);
     this.getRekomended();
+    this.getPopularKomic(this.pagePopular);
   },
 
   methods: {
+    // https://mangamint.kaedenoki.net/api/manga/popular/1
+
+    getPopularKomic: async function (data) {
+      localStorage.pagePopular = data;
+      const url = `https://mangamint.kaedenoki.net/api/manga/popular/${data}`;
+
+      try {
+        const response = await axios.get(url);
+        this.pagePopular = localStorage.pagePopular;
+        this.popularKomic = response.data;
+
+        // console.log(this.allKomic);
+      } catch (error) {
+        if (error.response) {
+          return error.response;
+        }
+      }
+    },
+
     getAllKomic: async function (data) {
       localStorage.page = data;
       const url = `https://mangamint.kaedenoki.net/api/manga/page/${data}`;
@@ -106,9 +169,6 @@ export default {
         left: 0,
         behavior: "smooth",
       });
-      // this.$route.push({
-      //   page: this.page,
-      // });
     },
 
     previousPage() {
@@ -121,9 +181,6 @@ export default {
         left: 0,
         behavior: "smooth",
       });
-      // this.$route.push({
-      //   page: this.page,
-      // });
     },
   },
 };

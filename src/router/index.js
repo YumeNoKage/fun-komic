@@ -17,12 +17,6 @@ const routes = [
       import("../components/Genre/Genre.vue")
   },
   {
-    path: "/manga",
-    name: "manga",
-    component: () =>
-      import("../views/Manga.vue")
-  },
-  {
     path: "/manhua",
     name: "manhua",
     component: () =>

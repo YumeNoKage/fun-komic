@@ -33,7 +33,7 @@
         </div>
         <div class="lg:mt-0 w-auto sm:block navbarMobile" id="mobileMenu">
           <div class="sm:block md:block lg:flex">
-            <div class="search w-80 mx-auto my-auto">
+            <div class="search w-80 mx-auto my-auto sm:mt-2">
               <div class="shadow flex rounded">
                 <input
                   class="w-full rounded p-2 focus:outline-none"
@@ -55,58 +55,58 @@
               @click="activeItemNav('semua')"
               :class="`${
                 activeNav === 'semua' ? 'bg-blue-500 ' : 'hover:bg-blue-100'
-              } md:mt-2 md:inline-flex md:ml-3 sm:inline-block  duration-300 rounded`"
+              } md:my-auto  md:inline-flex md:ml-3 sm:inline-block  duration-300 rounded`"
             >
               <router-link
                 to="/"
                 :class="`${
                   activeNav === 'semua' ? 'text-white' : 'text-gray-700'
-                } inline-flex items-center justify-center px-5 py-3 `"
+                } inline-flex items-center justify-center px-5 py-2 `"
               >
                 Semua
               </router-link>
             </div> -->
             <div
+              @click="activeItemNav('home')"
+              :class="`${
+                activeNav === 'home' ? 'bg-blue-500 ' : 'hover:bg-blue-100'
+              } md:my-auto  md:inline-flex md:ml-3 sm:inline-block  duration-300 rounded`"
+            >
+              <router-link
+                to="/"
+                :class="`${
+                  activeNav === 'home' ? 'text-white' : 'text-gray-700'
+                } inline-flex items-center justify-center px-5 py-2 `"
+              >
+                Semua
+              </router-link>
+            </div>
+            <div
               @click="activeItemNav('genre')"
               :class="`${
                 activeNav === 'genre' ? 'bg-blue-500 ' : 'hover:bg-blue-100'
-              } md:mt-2 md:inline-flex md:ml-3 sm:inline-block  duration-300 rounded`"
+              } md:my-auto  md:inline-flex md:ml-3 sm:inline-block  duration-300 rounded`"
             >
               <router-link
                 to="/genre"
                 :class="`${
                   activeNav === 'genre' ? 'text-white' : 'text-gray-700'
-                } inline-flex items-center justify-center px-5 py-3 `"
+                } inline-flex items-center justify-center px-5 py-2 `"
               >
                 Genre
-              </router-link>
-            </div>
-            <div
-              @click="activeItemNav('manga')"
-              :class="`${
-                activeNav === 'manga' ? 'bg-blue-500' : 'hover:bg-blue-100'
-              } md:mt-2 md:ml-3 md:inline-flex sm:inline-block  duration-300 rounded`"
-            >
-              <router-link
-                to="/manga"
-                :class="`${
-                  activeNav === 'manga' ? 'text-white' : 'text-gray-700'
-                } inline-flex items-center justify-center px-5 py-3 `"
-              >
-                Manga
               </router-link>
             </div>
             <div
               @click="activeItemNav('manhua')"
               :class="`${
                 activeNav === 'manhua' ? 'bg-blue-500' : 'hover:bg-blue-100'
-              } md:mt-2 md:ml-3 md:inline-flex sm:inline-block duration-300 rounded`"
+              } md:my-auto  md:ml-3 md:inline-flex sm:inline-block duration-300 rounded`"
             >
               <router-link
                 to="/manhua"
                 :class="`${
                   activeNav === 'manhua' ? 'text-white' : 'text-gray-700'
-                } inline-flex items-center justify-center px-5 py-3 `"
+                } inline-flex items-center justify-center px-5 py-2 `"
               >
                 Manhua
               </router-link>
@@ -115,13 +115,13 @@
               @click="activeItemNav('manhwa')"
               :class="`${
                 activeNav === 'manhwa' ? 'bg-blue-500' : 'hover:bg-blue-100'
-              } md:mt-2 md:ml-3 md:inline-flex sm:inline-block  duration-300 rounded`"
+              } md:my-auto  md:ml-3 md:inline-flex sm:inline-block  duration-300 rounded`"
             >
               <router-link
                 to="/manhwa"
                 :class="`${
                   activeNav === 'manhwa' ? 'text-white' : 'text-gray-700'
-                } inline-flex items-center justify-center px-5 py-3 `"
+                } inline-flex items-center justify-center px-5 py-2 `"
               >
                 Manhwa
               </router-link>
@@ -142,8 +142,15 @@ export default {
   data() {
     return {
       iconClose: false,
-      activeNav: "semua",
+      activeNav: "home",
     };
+  },
+
+  watch: {
+    "this.$route.name"() {
+      this.activeNav = this.$route.name;
+      console.log(this.$route.name);
+    },
   },
 
   mounted() {
@@ -160,10 +167,10 @@ export default {
       this.iconClose = !this.iconClose;
     },
 
-    activeItemNav(value) {
-      localStorage.activeNav = "semua";
-      localStorage.activeNav = value;
-      this.activeNav = localStorage.activeNav;
+    activeItemNav() {
+      // localStorage.activeNav = value;
+      // this.activeNav = this.$route.name;
+      // this.activeNav = value;
     },
   },
 };

@@ -23,6 +23,9 @@ export default {
   data() {
     return {
       listKomic: null,
+      allChapter: null,
+      nextKomic: null,
+      previousKomic: null,
     };
   },
 
@@ -32,8 +35,10 @@ export default {
 
   methods: {
     getListKomic: async function (data) {
+      const listChapter = localStorage.getItem("listChapter");
+      this.allChapter = JSON.parse(listChapter);
+
       const url = `https://mangamint.kaedenoki.net/api/chapter/${data.chapter}/`;
-      console.log(url);
       try {
         const response = await axios.get(url);
 

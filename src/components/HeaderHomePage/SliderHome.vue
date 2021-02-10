@@ -35,7 +35,6 @@ export default {
     return {
       options: {
         rewind: true,
-        trimSpace: false,
         autoWidth: true,
         autoplay: true,
         loop: true,
