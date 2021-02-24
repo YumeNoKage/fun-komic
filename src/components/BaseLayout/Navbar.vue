@@ -34,7 +34,7 @@
         <div class="lg:mt-0 w-auto sm:block navbarMobile" id="mobileMenu">
           <div class="sm:block md:block lg:flex">
             <div class="search w-80 mx-auto my-auto sm:mt-2">
-              <div class="shadow flex rounded">
+              <div class="shadow flex rounded sm:mb-2">
                 <input
                   class="w-full rounded p-2 focus:outline-none"
                   type="text"
@@ -51,21 +51,7 @@
                 </button>
               </div>
             </div>
-            <!-- <div
-              @click="activeItemNav('semua')"
-              :class="`${
-                activeNav === 'semua' ? 'bg-blue-500 ' : 'hover:bg-blue-100'
-              } md:my-auto  md:inline-flex md:ml-3 sm:inline-block  duration-300 rounded`"
-            >
-              <router-link
-                to="/"
-                :class="`${
-                  activeNav === 'semua' ? 'text-white' : 'text-gray-700'
-                } inline-flex items-center justify-center px-5 py-2 `"
-              >
-                Semua
-              </router-link>
-            </div> -->
+
             <div
               @click="activeItemNav('home')"
               :class="`${
@@ -146,16 +132,16 @@ export default {
     };
   },
 
-  watch: {
-    "this.$route.name"() {
-      this.activeNav = this.$route.name;
-      console.log(this.$route.name);
-    },
-  },
+  // watch: {
+  //   "this.$route.name"() {
+  //     this.activeNav = this.$route.name;
+  //     console.log(this.$route.name);
+  //   },
+  // },
 
-  mounted() {
-    this.activeItemNav();
-  },
+  // mounted() {
+  //   this.activeItemNav();
+  // },
 
   methods: {
     hamburger() {
@@ -167,10 +153,10 @@ export default {
       this.iconClose = !this.iconClose;
     },
 
-    activeItemNav() {
-      // localStorage.activeNav = value;
+    activeItemNav(value) {
       // this.activeNav = this.$route.name;
-      // this.activeNav = value;
+      localStorage.activeNav = value;
+      this.activeNav = value;
     },
   },
 };

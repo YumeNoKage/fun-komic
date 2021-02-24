@@ -119,9 +119,11 @@
           :to="`detail/${komic.endpoint}`"
           class="m-4"
         >
-          <div class="h-full relative">
+          <div
+            class="h-full relative rounded hover:bg-gray-50 bg-gray-200 transition-all duration-500"
+          >
             <div
-              class="max-w-sm rounded overflow-hidden shadow hover:shadow-lg duration-300 transition-all h-full"
+              class="max-w-sm rounded overflow-hidden hover:shadow-lg duration-300 transition-all h-full"
             >
               <img class="w-full" :src="`${komic.thumb}`" :alt="komic.title" />
               <div class="px-3 py-2 pb-5">
